@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Docs'){
       steps{
-        sh 'javadoc -d .\javadoc -author -version -encoding UTF-8 -charset UTF-8 example_01.java'
+        sh 'mvn site --fail-never'
       }
     }
     stage('pmd') {
