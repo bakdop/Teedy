@@ -17,7 +17,7 @@ pipeline {
     }
     stage('Docs'){
        // 生成Javadoc文档
-        javadoc javadocOutputDir: 'target/apidocs'
+        javadoc -d .\javadoc -author -version -encoding UTF-8 -charset UTF-8 example_01.java
     }
   }  
   post {
