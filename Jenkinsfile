@@ -12,13 +12,13 @@ pipeline {
       }
     }
     stage('Test report'){
-      // 生成Surefire测试报告
+     
       steps{
         sh 'mvn surefire-report:report'
       }  
     }
     stage('Docs'){
-       // 生成Javadoc文档
+      
       steps{
         sh 'javadoc -d .\javadoc -author -version -encoding UTF-8 -charset UTF-8 example_01.java'
       }
