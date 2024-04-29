@@ -12,13 +12,11 @@ pipeline {
       }
     }
     stage('Test report'){
-     
       steps{
         sh 'mvn surefire-report:report'
       }  
     }
     stage('Docs'){
-      
       steps{
         sh 'javadoc -d .\javadoc -author -version -encoding UTF-8 -charset UTF-8 example_01.java'
       }
