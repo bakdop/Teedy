@@ -4,11 +4,6 @@ pipeline {
     stage('Build') {
       steps {
         sh 'mvn -B -DskipTests clean package'
-        // 生成Surefire测试报告
-        junit '**/target/surefire-reports/*.xml'
-        
-        // 生成Javadoc文档
-        javadoc javadocOutputDir: 'target/apidocs'
       }
     }
     stage('pmd') {
@@ -16,7 +11,15 @@ pipeline {
         sh 'mvn pmd:pmd'
       }
     }
-      }
+    stage('Test report'){
+      // 生成Surefire测试报告
+      mvn surefire-report:report  
+    }
+    stage('Docs'){
+       // 生成Javadoc文档
+        javadoc javadocOutputDir: 'target/apidocs'
+    }
+  }  
   post {
     always {
       archiveArtifacts artifacts: '**/target/site/**', fingerprint: true
