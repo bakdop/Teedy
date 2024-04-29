@@ -6,6 +6,11 @@ pipeline {
         sh 'mvn -B -DskipTests clean package'
       }
     }
+    stage('Docs'){
+      steps{
+        sh 'javadoc -d .\javadoc -author -version -encoding UTF-8 -charset UTF-8 example_01.java'
+      }
+    }
     stage('pmd') {
       steps {
         sh 'mvn pmd:pmd'
@@ -15,11 +20,6 @@ pipeline {
       steps{
         sh 'mvn surefire-report:report'
       }  
-    }
-    stage('Docs'){
-      steps{
-        sh 'javadoc -d .\javadoc -author -version -encoding UTF-8 -charset UTF-8 example_01.java'
-      }
     }
   }  
   post {
